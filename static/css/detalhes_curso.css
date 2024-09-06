@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+body {
+    background-color: white;
+    margin: 0;
+}
+
+header {
+    background-color: white;
+    border-bottom: 1px solid #dadce0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.container-nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-size: 24px;
+    color: #1a73e8;
+    margin: 0;
+}
+
+nav ul {
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: #5f6368;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: #1a73e8;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.breadcrumb {
+    font-size: 14px;
+    color: #5f6368;
+    margin-bottom: 20px;
+}
+
+.course-details {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.course-header {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.course-image {
+    width: 350px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.course-info {
+    flex: 1;
+}
+
+.course-title {
+    font-size: 28px;
+    color: #1a73e8;
+    margin-bottom: 10px;
+}
+
+.course-subtitle {
+    font-size: 18px;
+    color: #5f6368;
+    margin-bottom: 20px;
+}
+
+.course-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.course-price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1a73e8;
+}
+
+.course-actions .btn-primary {
+    background-color: #1a73e8;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.course-actions .btn-primary:hover {
+    background-color: #165bb8;
+}
+
+.course-description h2 {
+    font-size: 24px;
+    color: #1a73e8;
+    margin-bottom: 20px;
+}
+
+.professor-section {
+    margin-top: 40px;
+}
+
+.professor-details {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.professor-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #1a73e8;
+}
+
+.professor-info p {
+    font-size: 16px;
+    color: #5f6368;
+}
+
+.professor-info p strong {
+    color: #202124;
+}

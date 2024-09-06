@@ -1,0 +1,256 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.login-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Left side styles */
+.left-side {
+    background: linear-gradient(135deg, #1e90ff, #4169e1);
+    color: white;
+    padding: 40px;
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.welcome-message h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.welcome-message p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+.slogan {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+/* Right side styles */
+.right-side {
+    padding: 40px;
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-side h2 {
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #333;
+}
+
+form {
+    width: 100%;
+    max-width: 320px;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="date"] ,
+form input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+form button {
+    font-family: 'Roboto', Arial, sans-serif;
+    width: 100%;
+    padding: 12px;
+    background-color: #4169e1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #1e90ff;
+}
+
+.terms {
+    margin-bottom: 15px;
+}
+
+.terms label {
+    display: flex;
+    align-items: flex-start;
+    font-size: 14px;
+    color: #666;
+}
+
+.terms input[type="checkbox"] {
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+.terms a {
+    color: black;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.terms a:hover a:active {
+    text-decoration: none;
+
+}
+
+.login-link {
+    margin-top: 20px;
+    font-size: 12px;  /* Reduced from 14px */
+    color: #666;
+    text-align: center;  /* Center the text */
+}
+
+.login-link a {
+    color: #4169e1;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+.password-requirements {
+    background-color: #f8f9fa;
+    border-left: 4px solid #007bff;
+    color: #495057;
+    font-size: 0.9em;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    line-height: 1.5;
+}
+
+.password-requirements::before {
+    content: "\ℹ️";
+    margin-right: 8px;
+    font-size: 1.1em;
+}
+
+.alerta{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    z-index: 1000;
+    animation: fadeIn 0.5s, fadeOut 0.5s 2.5s;
+    list-style-type: none;
+}
+
+
+.sucesso {
+    background-color: #4CAF50;
+}
+
+.erro {
+    background-color: #f44336;
+}
+
+.aviso {
+    background-color: #ff9800;
+}
+
+.info {
+    background-color: #2196F3;
+}
+
+form input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+form input[type="file"]::file-selector-button {
+    background-color: #4169e1;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin-right: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="file"]::file-selector-button:hover {
+    background-color: #1e90ff;
+}
+
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    .left-side,
+    .right-side {
+        flex: 1 1 100%;
+        padding: 30px;
+    }
+}

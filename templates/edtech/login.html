@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - EduMenic</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <div class="left-side">
+                <div class="welcome-message">
+                    <h1>Bem-vindo ao EduMenic</h1>
+                    <p>Transforme seu futuro com nossos cursos incríveis. Faça login e descubra um mundo de conhecimento, professores especializados e uma comunidade vibrante de aprendizes.</p>
+                    <p><strong><i>Inspirando Aprendizado e Transformando Vidas</strong></p></i>
+                </div>
+            </div>
+
+            <div class="right-side">
+                <h2>Entre na sua conta</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" id="botaoLogin">Login</button>
+                </form>                
+                <p class="login-link">Ainda não tem uma conta? <a href="{% url 'cadastro' %}">Crie aqui</a></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

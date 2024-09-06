@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Cursos - EduMenic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container-nav">
+            <h1>EduMenic</h1>
+            <nav aria-label="Main Navigation">
+                <ul>
+                    <li><a href="{% url 'home' %}" class="active">Início</a></li>
+                    <li><a href="{% url 'meus_cursos' %}">Meus cursos</a></li>
+                    <li><a href="{% url 'meu_perfil' %}">Meu perfil</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <h2>Cursos</h2>
+        <div class="cursos-grid">
+            {% for curso in cursos %}
+                <div class="curso-card">
+                    <img src="{{ curso.imagem }}" alt="{{ curso.titulo }}" class="curso-thumbnail">
+                    <div class="curso-info">
+                        <h3>{{ curso.titulo }}</h3>
+                        <p>{{ curso.sub_titulo }}</p>
+                        <p>Nome do Professor: {{ curso.prof_nome_completo }}</p>
+                        <a href="{% url 'detalhes_curso' curso.id_curso %}" class="btn">Ver detalhes</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

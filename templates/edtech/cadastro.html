@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - EduMenic</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <div class="left-side">
+                <div class="welcome-message">
+                    <h1>Bem-vindo ao EduMenic</h1>
+                    <p>Transforme seu futuro com nossos cursos incríveis. Faça login e descubra um mundo de conhecimento, professores especializados e uma comunidade vibrante de aprendizes.</p>
+                    <p>Pronto para transformar sua vida através do aprendizado? Cadastre-se agora e tenha acesso a cursos incríveis, professores especialistas e uma comunidade dedicada ao seu sucesso. Venha fazer parte desta jornada!</p>
+                    <p><strong><i>Inspirando Aprendizado e Transformando Vidas</strong></p></i>
+                </div>
+            </div>
+            <div class="right-side">
+                <h2>Cadastre sua conta</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <p class="password-requirements">
+                        A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas e minúsculas, números e caracteres especiais.
+                    </p>
+                    <div class="terms">
+                        <label>
+                            <input type="checkbox" required>
+                            <a href="{% url 'termos_servicos' %}" target="_blank">Ao clicar em Cadastre-se, eu concordo com os <u>Termos de Serviço</a>  </u>
+                        </label>
+                    </div>
+                    <button type="submit">Cadastre-se</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Cursos - EduMenic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/meus_cursos.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container-nav">
+            <h1>EduMenic</h1>
+            <nav aria-label="Main Navigation">
+                <ul>
+                    <li><a href="{% url 'home' %}">Início</a></li>
+                    <li><a href="{% url 'meus_cursos' %}" class="active">Meus cursos</a></li>
+                    <li><a href="{% url 'meu_perfil' %}">Meu perfil</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <h2>Meus Cursos</h2>
+        <div class="cursos-grid">
+            {% for curso in cursos %}
+                <div class="curso-card">
+                    <img src="{{ curso.imagem }}" alt="{{ curso.titulo }}" class="curso-thumbnail">
+                    <div class="curso-info">
+                        <h3>{{ curso.titulo }}</h3>
+                        <p>{{ curso.sub_titulo }}</p>
+                        <p>Nome do Professor: {{ curso.prof_nome_completo }}</p>
+                        <button class="proxima-aula" disabled>Próxima aula em: <span class="countdown">30 min</span></button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const countdownElements = document.querySelectorAll('.countdown');
+            const buttons = document.querySelectorAll('.proxima-aula');
+            const meetingLink = "https://meet.jit.si/DomenicEdtech";
+
+            countdownElements.forEach((element, index) => {
+                let minutes = 30;
+                let seconds = 0;
+
+                const countdownInterval = setInterval(() => {
+                    if (minutes === 0 && seconds === 0) {
+                        clearInterval(countdownInterval);
+                        element.textContent = "Disponível agora";
+                        buttons[index].disabled = false;
+                        buttons[index].innerHTML = `<a href="${meetingLink}" target="_blank" class="btnTeste">Acessar reunião</a>`;
+                    } else {
+                        if (seconds === 0) {
+                            minutes--;
+                            seconds = 59;
+                        } else {
+                            seconds--;
+                        }
+                        element.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    }
+                }, 1000);
+            });
+        });
+
+    </script>
+</body>
+</html>

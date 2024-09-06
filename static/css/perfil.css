@@ -1,0 +1,263 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+body {
+    background-color: white;
+    margin: 0;
+}
+
+header {
+    background-color: white;
+    border-bottom: 1px solid #dadce0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.container-nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-size: 24px;
+    color: #1a73e8;
+    margin: 0;
+}
+
+nav ul {
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: #5f6368;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: #1a73e8;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-section {
+    text-align: center;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.profile-image {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.edit-image {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.edit-image:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.profile-info h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.profile-info p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.profile-form .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.profile-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.profile-form input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.btn {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #4169e1;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #1e90ff;
+}
+
+.btn-danger {
+    background-color: #ff4c4c;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #ff1a1a;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 30px;
+    border: 1px solid #dadce0;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #5f6368;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.close:hover {
+    color: #1a73e8;
+}
+
+#deleteModalLabel {
+    color: #202124;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    color: #5f6368;
+    font-size: 16px;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.button-modal {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.button-modal button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#confirm-delete {
+    background-color: #ea4335;
+    color: white;
+}
+
+#confirm-delete:hover {
+    background-color: #d33025;
+}
+
+#cancel-delete {
+    background-color: #f8f9fa;
+    color: #3c4043;
+    border: 1px solid #dadce0;
+}
+
+#cancel-delete:hover {
+    background-color: #f1f3f4;
+}

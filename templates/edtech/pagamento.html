@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ curso.titulo }} - Detalhes do Curso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/pagamento.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container-nav">
+            <h1>EduMenic</h1>
+            <nav aria-label="Main Navigation">
+                <ul>
+                    <li><a href="{% url 'home' %}" class="active">Início</a></li>
+                    <li><a href="{% url 'meus_cursos' %}">Meus Cursos</a></li>
+                    <li><a href="{% url 'meu_perfil' %}">Meu perfil</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div id="pixModal" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-title">Pagamento PIX</h2>
+            <div class="modal-body">
+                <div class="qr-code-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Link_pra_pagina_principal_da_Wikipedia-PT_em_codigo_QR_b.svg/1024px-Link_pra_pagina_principal_da_Wikipedia-PT_em_codigo_QR_b.svg.png" alt="PIX QR Code" class="qr-code-image">
+                </div>
+                <div class="pix-info">
+                    <h3 class="pix-code-title">Código PIX</h3>
+                    <div class="pix-code-container">
+                        <textarea id="pixCode" class="pix-code-input" readonly>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</textarea>
+                        <button onclick="copyPixCode()" class="btn-copy">Copiar código do QR Code</button>
+                    </div>
+                    <button id="proceedButton" onclick="redirectToMeusCursos()" class="btn btn-primary">Prosseguir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="customAlert" class="custom-alert"></div>
+
+
+<script>
+    function redirectToMeusCursos() {
+        window.location.href = "{% url 'meus_cursos' %}";
+    }
+    
+    function showPixModal() {
+        document.getElementById('pixModal').style.display = 'block';
+    }
+
+        function copyPixCode() {
+        var pixCode = document.getElementById('pixCode');
+        pixCode.select();
+        document.execCommand('copy');
+        showCustomAlert('Código PIX copiado!');
+    }
+
+    function showCustomAlert(message) {
+        var alert = document.getElementById('customAlert');
+        alert.textContent = message;
+        alert.style.display = 'block';
+        
+        setTimeout(function() {
+            alert.style.display = 'none';
+        }, 3000);
+    }
+    window.onload = showPixModal;
+</script>
+</body>
+</html>

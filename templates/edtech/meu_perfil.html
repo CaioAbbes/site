@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - EduMenic</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container-nav">
+            <h1>EduMenic</h1>
+            <nav aria-label="Main Navigation">
+                <ul>
+                    <li><a href="{% url 'home' %}">Início</a></li>
+                    <li><a href="{% url 'meus_cursos' %}">Meus Cursos</a></li>
+                    <li><a href="{% url 'meu_perfil' %}" class="active">Meu perfil</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="profile-section">
+            <h2>Meu Perfil</h2>
+            
+            <div class="profile-header">
+                <div class="profile-image">
+                    {% if form.foto_perfil.value %}
+                        <img src="{{ form.foto_perfil.value.url }}" alt="Foto de perfil de {{ form.nome_completo.value }}">
+                    {% else %}
+                        <img src="https://domenicedtechblob.blob.core.windows.net/domenic-edtech-blob/Breezeicons-actions-22-im-user.svg.png" alt="Foto de perfil padrão">
+                    {% endif %}
+                    <label for="{{ form.foto_perfil.id_for_label }}" class="edit-image">
+                        <i class="fas fa-camera"></i> Editar foto
+                    </label>
+                </div>
+                <div class="profile-info">
+                    <h3>{{ nome_completo }}</h3>
+                    <p>{{ email }}</p>
+                </div>
+            </div>
+
+            <form method="post" enctype="multipart/form-data" class="profile-form">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="{{ form.nome_completo.id_for_label }}">{{ form.nome_completo.label }}</label>
+                    {{ form.nome_completo }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.data_nascimento.id_for_label }}">{{ form.data_nascimento.label }}</label>
+                    {{ form.data_nascimento }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.celular.id_for_label }}">{{ form.celular.label }}</label>
+                    {{ form.celular }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.endereco.id_for_label }}">{{ form.endereco.label }}</label>
+                    {{ form.endereco }}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.cpf.id_for_label }}">{{ form.cpf.label }}</label>
+                    {{ form.cpf }}
+                </div>
+                
+                
+                <div class="form-group">
+                    <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                    {{ form.email }}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.senha.id_for_label }}">{{ form.senha.label }}</label>
+                    {{ form.senha }}
+                </div>
+                
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">Salvar alterações</button>
+                    <button type="button" class="btn btn-danger" onclick="openModal()">Excluir conta</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <div id="deleteModal" class="modal" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-content">
+            <button type="button" class="close" aria-label="Fechar" onclick="closeModal()">&times;</button>
+            <h3 id="deleteModalLabel">Excluir conta</h3>
+            <p>Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.</p>
+            <div class="button-modal">
+                <button id="confirm-delete" onclick="deleteAccount()">Sim, excluir</button>
+                <button id="cancel-delete" onclick="closeModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function openModal() {
+        document.getElementById("deleteModal").style.display = "block";
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+        document.getElementById("deleteModal").style.display = "none";
+        document.body.style.overflow = "";
+    }
+
+    function deleteAccount() {
+        const deleteButton = document.getElementById("confirm-delete");
+        deleteButton.disabled = true;
+        deleteButton.textContent = "Deletando...";
+
+        fetch('{% url "deletar_aluno" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            credentials: 'same-origin'
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao deletar a conta');
+            }
+        })
+        .then(data => {
+            showNotification('Conta excluída com sucesso!', 'sucesso');
+            setTimeout(() => {
+                window.location.href = '{% url "login" %}';
+            }, 2000); 
+        })
+        .catch(error => {
+            showNotification(error.message, 'erro');
+            deleteButton.disabled = false;
+            deleteButton.textContent = "Sim, excluir";
+        });
+    }
+
+    function showNotification(message, type) {
+        const notification = document.createElement('div');
+        notification.className = `alerta ${type}`;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.remove();
+        }, 3000); 
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById("deleteModal");
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const openModalButton = document.getElementById('open-delete-modal');
+        const confirmDeleteButton = document.getElementById('confirm-delete');
+        const cancelDeleteButton = document.getElementById('cancel-delete');
+
+        if (openModalButton) openModalButton.addEventListener('click', openModal);
+        if (confirmDeleteButton) confirmDeleteButton.addEventListener('click', deleteAccount);
+        if (cancelDeleteButton) cancelDeleteButton.addEventListener('click', closeModal);
+    });
+    </script>
+</body>
+</html>

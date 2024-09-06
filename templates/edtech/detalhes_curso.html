@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ curso.titulo }} - Detalhes do Curso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/detalhes_curso.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container-nav">
+            <h1>EduMenic</h1>
+            <nav aria-label="Main Navigation">
+                <ul>
+                    <li><a href="{% url 'home' %}" class="active">Início</a></li>
+                    <li><a href="{% url 'meus_cursos' %}">Meus Cursos</a></li>
+                    <li><a href="{% url 'meu_perfil' %}">Meu perfil</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="{% url 'home' %}">Início</a> &gt; {{ curso.titulo }}
+        </div>
+        <div class="course-details">
+            <div class="course-header">
+                <img src="{{ curso.imagem }}" alt="{{ curso.titulo }}" class="course-image">
+                <div class="course-info">
+                    <h1 class="course-title">{{ curso.titulo }}</h1>
+                    <p class="course-subtitle">{{ curso.sub_titulo }}</p>
+                    <div class="course-meta">
+                        <span class="course-price">R$ {{ curso.preco }}</span>
+                        <div class="course-actions">
+                            <a href="{% url 'pagamento' curso.id_curso %}" class="btn btn-primary">Matricule-se Agora</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="course-description">
+                <h2>Descrição do Curso</h2>
+                <p>{{ curso.descricao }}</p>
+            </div>
+            <div class="professor-section">
+                <h2>Professor</h2>
+                <div class="professor-details">
+                    <img src="{{ curso.prof_foto_perfil }}" alt="Foto do Professor" class="professor-photo">
+                    <div class="professor-info">
+                        <p><strong>Nome:</strong> {{ curso.prof_nome_completo }}</p>
+                        <p><strong>Bio:</strong> {{ curso.prof_bio }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

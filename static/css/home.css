@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+body {
+    background-color: white;
+    margin: 0;
+}
+
+header {
+    background-color: white;
+    border-bottom: 1px solid #dadce0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.container-nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-size: 24px;
+    color: #1a73e8;
+    margin: 0;
+}
+
+nav ul {
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: #5f6368;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: #1a73e8;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    color: #1a73e8;
+    margin-bottom: 20px;
+}
+
+.cursos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.curso-card {
+    background-color: #fff;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.curso-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.curso-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.curso-info {
+    padding: 15px;
+}
+
+.curso-info h3 {
+    font-size: 18px;
+    color: #202124;
+    margin-bottom: 10px;
+}
+
+.curso-info p {
+    font-size: 14px;
+    color: #5f6368;
+    margin-bottom: 10px;
+}
+
+.proxima-aula {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.proxima-aula:disabled {
+    background-color: #dadce0;
+    cursor: not-allowed;
+}
+.btn {
+    padding: 8px 16px;
+    background-color: #1a73e8;
+    color: white;
+    padding: 6px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #1558b0;
+}
